@@ -1,0 +1,26 @@
+---
+import Hand from './Hand.astro';
+
+interface Props {
+  direction?: 'n' | 'br' | 'bl' | 'tr' | 'tl' | 'b' | 's';
+}
+
+const rotation = {
+  n: [135, 135],
+  br: [180, 270],
+  bl: [0, 270],
+  tr: [90, 180],
+  tl: [0, 90],
+  b: [0, 180],
+  s: [90, 270]
+} as const;
+
+const { direction } = Astro.props as Props;
+
+const [deg1, deg2] = rotation[direction ?? "n"];
+---
+
+<div class="w-12 h-12 bg-clockLight dark:bg-clockDark relative rounded-full overflow-hidden">
+  <Hand deg={deg1}/>
+  <Hand deg={deg2}/>
+</div>

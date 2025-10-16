@@ -1,0 +1,66 @@
+---
+import Digit from '../components/Digit.astro';
+import Layout from '../layouts/Layout.astro';
+
+// Server: initial time
+const initialTime = new Date()
+  .toLocaleTimeString('sk-SK', {
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  })
+  .replace(/\D/g, '')
+  .split('');
+---
+
+<Layout>
+  <!-- Pass initial time as data attribute -->
+  <astro-clock data-time={initialTime.join('')}>
+    <div id="digits" class="flex flex-row space-x-6">
+      <div class="flex flex-row space-x-2">
+        <Digit number={initialTime[0] as '-1' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'} />
+        <Digit number={initialTime[1] as '-1' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'} />
+      </div>
+      <div class="flex flex-row space-x-2">
+        <Digit number={initialTime[2] as '-1' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'} />
+        <Digit number={initialTime[3] as '-1' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'} />
+      </div>
+      <div class="flex flex-row space-x-2">
+        <Digit number={initialTime[4] as '-1' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'} />
+        <Digit number={initialTime[5] as '-1' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'} />
+      </div>
+    </div>
+  </astro-clock>
+</Layout>
+
+<script type="module">
+  class AstroClock extends HTMLElement {
+    connectedCallback() {
+      const digits = this.querySelectorAll('[data-digit]');
+
+      const update = () => {
+        const time = new Date()
+          .toLocaleTimeString('sk-SK', {
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          })
+          .replace(/\D/g, '')
+          .split('');
+
+        this.dataset.time = time.join('');
+        digits.forEach((el, i) => {
+          el.setAttribute('data-number', time[i]);
+          el.textContent = time[i]; // show new digit
+        });
+      };
+
+      update();
+      setInterval(update, 1000);
+    }
+  }
+
+  customElements.define('astro-clock', AstroClock);
+</script>

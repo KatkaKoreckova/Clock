@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-bgDark: oklch(26.8% 0.002 265.2);
+    --color-clockDark: oklch(22.8% 0.002 265.2);
+    --color-handDark: oklch(92.6% 0.184 111.4);
+    
+    --color-bgLight: oklch(96.3% 0.003 265.6);
+    --color-clockLight: oklch(92.1% 0.002 265.2);
+    --color-handLight: oklch(35.2% 0.004 265.6);
+}
+
+.rotate-0 {
+    @apply rotate-0;
+}
+
+.rotate-90 {
+    @apply rotate-90;
+}
+
+.rotate-180 {
+    @apply rotate-180;
+}
+
+.rotate-270 {
+    @apply rotate-[270deg];
+}
+
+.rotate-135 {
+    @apply rotate-[135deg];
+}
