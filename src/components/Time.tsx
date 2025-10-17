@@ -1,28 +1,37 @@
-// src/components/Clock.tsx
 import React, { useEffect, useState } from "react";
 import Digit from "./Digit";
 
 const Clock: React.FC = () => {
-  const getTimeDigits = () =>
-    new Date()
-      .toLocaleTimeString("sk-SK", {
-        hour12: false,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      })
-      .replace(/\D/g, "")
-      .split("");
+  const getTimeDigits = () => {
+    const now = new Date();
 
-  const [digits, setDigits] = useState<string[]>(getTimeDigits());
+    // Format to Slovak time zone explicitly
+    const timeStr = new Intl.DateTimeFormat("sk-SK", {
+      timeZone: "Europe/Bratislava", // 👈 fixed timezone
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }).format(now);
 
-  // Optional: update time every second
+    return timeStr.replace(/\D/g, "").split("");
+  };
+
+  const [digits, setDigits] = useState<string[]>([]);
+
   useEffect(() => {
+    // Run only in browser
+    setDigits(getTimeDigits());
+
     const interval = setInterval(() => {
       setDigits(getTimeDigits());
     }, 1000);
+
     return () => clearInterval(interval);
   }, []);
+
+  // Avoid SSR mismatch
+  if (digits.length === 0) return null;
 
   return (
     <div id="digits" className="flex flex-row space-x-6">
