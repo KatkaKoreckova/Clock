@@ -21,6 +21,6 @@ const [deg1, deg2] = rotation[direction ?? "n"];
 ---
 
 <div class="w-12 h-12 bg-clockLight dark:bg-clockDark relative rounded-full overflow-hidden">
-  <Hand deg={deg1}/>
-  <Hand deg={deg2}/>
+  <div class={`h-1 w-1/2 absolute top-1/2 left-1/2 bg-handLight origin-left dark:bg-handDark duration-200 rotate-${deg1}`}></div>
+  <div class={`h-1 w-1/2 absolute top-1/2 left-1/2 bg-handLight origin-left dark:bg-handDark duration-200 rotate-${deg2}`}></div>
 </div>
