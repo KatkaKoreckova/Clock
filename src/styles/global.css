@@ -4,24 +4,18 @@
 
 @theme {
     /* Dark theme */
-  --color-bgDark: #3d3b49;
-  --color-bgDark: oklch(26.8% 0.002 265.2);
+  --color-bgDark: #252627;
 
-  --color-clockDark: #343243;
-  --color-clockDark: oklch(22.8% 0.002 265.2);
+  --color-clockDark: #1c1c1d;
 
-  --color-handDark: #c1f4b0;
-  --color-handDark: oklch(92.6% 0.184 111.4);
+  --color-handDark: #ecf144;
 
   /* Light theme */
-  --color-bgLight: #f5f5ff;
-  --color-bgLight: oklch(96.3% 0.003 265.6);
+  --color-bgLight: #f2f3f5;
 
-  --color-clockLight: #ebebf9;
-  --color-clockLight: oklch(92.1% 0.002 265.2);
+  --color-clockLight: #e4e5e6;
 
-  --color-handLight: #595972;
-  --color-handLight: oklch(35.2% 0.004 265.6);
+  --color-handLight: #3a3b3d;
 }
 
 .rotate-0 {

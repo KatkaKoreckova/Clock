@@ -14,16 +14,6 @@ import "../styles/global.css";
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 		/>
-		<script>
-			(function () {
-			const isDark =
-				localStorage.theme === "dark" ||
-				(!("theme" in localStorage) &&
-				window.matchMedia("(prefers-color-scheme: dark)").matches);
-			document.documentElement.classList.toggle("dark", isDark);
-			document.documentElement.classList.toggle("light", !isDark);
-			})();
-		</script>
 	</head>
 	<body id="body" class="light mt-0">
 		<section
