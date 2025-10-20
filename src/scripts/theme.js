@@ -9,3 +9,4 @@ function toggleTheme() {
 btn.addEventListener('click', () => {
     toggleTheme();
 })
+
